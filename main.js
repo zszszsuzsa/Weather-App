@@ -8,6 +8,10 @@ $("document").ready(function getLocation() {
   }
 });
 
+/**
+ * Shows current GPS position
+ * @param {number} position 
+ */
 function showPosition(position) {
   // inserting location data into browser URL for api request------------------------------------
   var lat = position.coords.latitude;
