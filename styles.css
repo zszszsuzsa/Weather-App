@@ -1,0 +1,32 @@
+.spring {
+  background-image: url("http://www.wgolv.com/wp-content/uploads/2017/03/spring-03-1280x640.jpg"); }
+
+.winter {
+  background-image: url("http://flashwallpapers.com/wp-content/uploads/2015/07/Moraine-Lake-1024x768.jpg"); }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  body .container {
+    width: 80%;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.6); }
+    body .container .img-box img {
+      position: relative;
+      left: 48px;
+      float: right; }
+    body .container .degree {
+      font-size: 6em; }
+    body .container .switch {
+      padding-top: 15px; }
+      body .container .switch .unitC, body .container .switch .unitF {
+        font-size: 2rem; }
+      body .container .switch .unitBold {
+        font-size: 3.5rem;
+        font-weight: bold; }
+    body .container .description {
+      font-size: 2em; }
