@@ -1,5 +1,3 @@
-
-
 $("document").ready(function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -10,55 +8,63 @@ $("document").ready(function getLocation() {
 
 /**
  * Shows current GPS position
- * @param {number} position 
+ * @param {number} position
  */
 function showPosition(position) {
-  // inserting location data into browser URL for api request------------------------------------
+  // inserting location data into browser URL for api request--------------------
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
-  var requestURL =
+  var URLtemplate =
     "https://fcc-weather-api.glitch.me/api/current?lon=:longitude&lat=:latitude";
-  var res = requestURL.replace(":longitude", lon).replace(":latitude", lat);
+  var URLready = URLtemplate.replace(":longitude", lon).replace(
+    ":latitude",
+    lat
+  );
 
   // api request---------------------------------------------------------------
   $.get(
-    res,
+    URLready,
 
     function(data) {
-      var c = data["main"]["temp"];
-      // location name:-------------------------------------------------
+      var celsius = data["main"]["temp"];
+      // inserting location name--------------------------------------------
       $(".location").append(data["name"].replace(/ue/gi, "ü"));
-      // weather icon---------------------------------------------------
+      // inserting weather icon---------------------------------------------
       document.getElementById("weatherIcon").src = data.weather[0].icon;
-      w = $("p.degree").css("height");
-      $("img")
-        .css("height", w)
-        .css("max-width", w);
-      console.log(w);
-      // celsius---------------------------------------------------------
-      $(".degree").prepend(Math.round(data["main"]["temp"]));
-      //  description-------------------------------------------------------
+      // inserting temperature in celsius-----------------------------------
+      $(".temperature").prepend(Math.round(data["main"]["temp"]));
+      //  inserting description--------------------------------------------
       $(".description").append(data["weather"][0]["description"]);
-      //  Converting to fahrenheit-----------------------------------------
-      var f = 1.8 * c + 32;
-      $("p.unitF").click(function(c) {
-        $(".degree")
+      
+      //  converting celsius to fahrenheit---------------------------------
+      var fahrenheit = 1.8 * celsius + 32;
+      $("p.fahrenheitSymbol").click(function(celsius) {
+        $(".temperature") /* removes current temperature*/
           .empty()
-          .append(Math.round(f) + "°");
-        var celsius = $("p.unitC").detach(); //juhúúúúúúúúúúúúúúúúúúúú :)
-        $("p.unitF").addClass("unitBold");
-        celsius.appendTo(".switch"); //juhúúúúúúúúúúúúúúúúúúúú :)
-        $("p.unitC").removeClass("unitBold");
+          .append(Math.round(fahrenheit) + "°");
+        $("p.celsiusSymbol").removeClass("active");
+        var detached = $(
+          "p.celsiusSymbol"
+        ).detach(); /* removes "C" unit Symbol*/
+        $("p.fahrenheitSymbol").addClass("active");
+        detached.appendTo(
+          ".unitSymbolContainer"
+        ); /* reattaches "F" unit Symbol to the bottom */
       });
+      
       //  Converting back to celsius---------------------------------------
-      $("p.unitC").click(function(data) {
-        $(".degree")
+      $("p.celsiusSymbol").click(function(data) {
+        $(".temperature") /* removes current temperature*/
           .empty()
-          .append(Math.round(c) + "°");
-        var fahrenheit = $("p.unitF").detach();
-        $("p.unitC").addClass("unitBold");
-        fahrenheit.appendTo(".switch");
-        $("p.unitF").removeClass("unitBold");
+          .append(Math.round(celsius) + "°");
+        $("p.fahrenheitSymbol").removeClass("active");
+        var detached = $(
+          "p.fahrenheitSymbol"
+        ).detach(); /* removes "F" unit Symbol*/
+        $("p.celsiusSymbol").addClass("active");
+        detached.appendTo(
+          ".unitSymbolContainer"
+        ); /* reattaches "C" unit Symbol to the bottom */
       });
     }
   );

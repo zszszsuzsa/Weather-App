@@ -16,16 +16,19 @@ body {
     margin-top: 50px;
     background: rgba(255, 255, 255, 0.6); }
     body .container .img-box img {
+      height: 100px;
+      max-width: 100px;
       position: relative;
       left: 48px;
       float: right; }
-    body .container .degree {
+    body .container .temperature {
       font-size: 6em; }
-    body .container .switch {
+    body .container .unitSymbolContainer {
       padding-top: 15px; }
-      body .container .switch .unitC, body .container .switch .unitF {
+      body .container .unitSymbolContainer .celsiusSymbol,
+      body .container .unitSymbolContainer .fahrenheitSymbol {
         font-size: 2rem; }
-      body .container .switch .unitBold {
+      body .container .unitSymbolContainer .active {
         font-size: 3.5rem;
         font-weight: bold; }
     body .container .description {
