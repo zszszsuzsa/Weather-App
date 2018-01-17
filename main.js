@@ -1,4 +1,4 @@
-$("document").ready(function getLocation() {
+var app = {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
