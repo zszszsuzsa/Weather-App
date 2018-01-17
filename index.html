@@ -35,18 +35,19 @@
 
 <body>
     <div class="loading">Loading ...</div>
+    <div class="loaded container">
+        <h1 class="text-center location">Local weather in <span></span></h1>
         <div class="row text-center">
             <div class="col-xs-3 col-sm-4 img-box">
                 <img id="weatherIcon" class="img-responsive" alt="weather icon">
             </div>
-            <p class="col-xs-6 temperature col-sm-4">°</p>
-            <div class="row col-xs-3 col-sm-4 unitSymbolContainer text-left">
-                <p class="col-xs-12 celsiusSymbol active">C</p>
-                <p class="col-xs-12 fahrenheitSymbol">F</p>
+            <p class="col-xs-6 temperature col-sm-4"><span></span>°</p>
+            <div class="row col-xs-3 col-sm-4 unit-container text-left">
+                <p class=" active" data-unit="celsius">C</p>
+                <p data-unit="fahrenheit">F</p>
             </div>
         </div>
         <p class="text-center description"></p>
-        <p id="demo"></p>
     </div>
 
 
